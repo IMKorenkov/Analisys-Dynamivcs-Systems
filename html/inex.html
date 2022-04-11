@@ -1,0 +1,117 @@
+<html>
+
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.7/css/bootstrap.min.css" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="../css/menu.css" />
+    <link rel="stylesheet" href="../css/canvas.css" />
+</head>
+
+<body>
+    <div id="wrapper">
+        <div class="overlay"></div>
+        <nav class="navbar navbar-inverse navbar-fixed-top" id="sidebar-wrapper" role="navigation">
+            <ul class="nav sidebar-nav">
+                <li class="sidebar-brand">
+                    <a>АДС</a>
+                </li>
+                <li>
+                    <a href="#">Главная</a>
+                </li>
+                <li>
+                    <a href="#">Галерея</a>
+                </li>
+                <li>
+                    <a href="#">Спрвочная  информация</a>
+                </li>
+                <li>
+                    <a href="#">Фазовый портрет ДС</a>
+                </li>
+            </ul>
+        </nav>
+
+        <div id="page-content-wrapper">
+            <button type="button" class="hamburger is-closed" data-toggle="offcanvas" style="position: absolute;">
+                <span class="hamb-top"></span>
+                <span class="hamb-middle"></span>
+                <span class="hamb-bottom"></span>
+            </button>
+            <div>
+                <div class="row">
+                    <div class="col-lg-9">
+                        <canvas id="windowForVizualization" style="height: 600px;"></canvas>
+                    </div>
+                    <div class="col-lg-3">
+
+                        <fieldset>
+                            <legend>Управление</legend>
+                            <div class="row">
+                                <div class="col-lg-4">
+                                    <button v-on:click="clearScrin()">ClearScreen</button>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button v-on:click="repliceStartStop()">Start</button>
+                                </div>
+                                <div class="col-lg-4">
+                                    <button v-on:click="savePNG()">Save</button>
+                                </div>
+                            </div>
+                        </fieldset>
+
+                        <div class="row" style="border: 1px solid #000;">
+                            <div class="col-lg-12" v-for="(i, k) in params">
+                                <b>{{k}}:</b>
+                                <input type="text" class="params" v-bind:value="i" v-bind:id="k">
+                                <button v-on:click="al(k)">-></button>
+                            </div>
+                        </div>
+                        <div class="row" style="border: 1px solid #000;">
+                            <div class="col-lg-12">
+                                <b>Колличество точек:</b>{{indexPoint}}
+                            </div>
+                            <div class="col-lg-8">
+                                Колличество точек
+                            </div>
+                            <div class="col-lg-4">
+                                <input v-model="countPoint">
+                            </div>
+                            <div class="col-lg-8">
+                                Шаг интегрирования
+                            </div>
+                            <div class="col-lg-4">
+                                <input v-model="CONST_H">
+                            </div>
+                            <div class="col-lg-8">
+                                Цвет траектории
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="color" v-model="colorLine">
+                            </div>
+                            <div class="col-lg-8">
+                                Цвет окна
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="color" v-model="colorWindow">
+                            </div>
+                            <div class="col-lg-8">
+                                Колличество точек пропуска
+                            </div>
+                            <div class="col-lg-4">
+                                <input type="number" v-model="noDrawPointBegin">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button v-on:click="showFPA()" style="width: 100%;">Start</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vue/3.2.30/vue.global.min.js"></script>
+    <script src="../js/menu.js"></script>
+    <script src="../js/ADS.js"></script>
+    <script src="../js/PageFPA.js"></script>
+</body>
+
+</html>
